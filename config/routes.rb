@@ -1,6 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => 'produtos', :action => 'index'
+  
+  map.root :controller => 'produtos'
+  
   map.resources :produtos
+  map.resources :itens
+  
   map.connect ':controller/:action'
   map.connect ':controller/:action.:format'
   # The priority is based upon order of creation: first created -> highest priority.

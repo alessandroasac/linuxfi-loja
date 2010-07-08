@@ -9,7 +9,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100707202119) do
+ActiveRecord::Schema.define(:version => 20100707204610) do
+
+  create_table "itens", :force => true do |t|
+    t.integer  "pedido_id",  :null => false
+    t.integer  "produto_id", :null => false
+    t.integer  "quantidade"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "itens", ["pedido_id"], :name => "index_itens_on_pedido_id"
+
+  create_table "pedidos", :force => true do |t|
+    t.string   "estado",     :default => "carrinho", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "produtos", :force => true do |t|
     t.string   "nome",                                      :null => false
