@@ -1,3 +1,7 @@
+<% content_for :cabecalho do %>
+	Listagem de Produtos
+<% end %>
+
 <% unless @produtos.blank? %>
 <ul>
     <% @produtos.each do |produto| %>

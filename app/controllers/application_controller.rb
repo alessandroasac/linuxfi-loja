@@ -13,9 +13,12 @@ class ApplicationController < ActionController::Base
   protected
   
   def pedido_atual
+    
     if @pedido_atual.nil? && !session[:pedido_id].blank?
-      @pedido_atual = Pedido.find_by_id(sesion[:pedido_id])
+      @pedido_atual = Pedido.find_by_id(session[:pedido_id])
     end
+    
     @pedido_atual ||= Pedido.new
+    
   end
 end

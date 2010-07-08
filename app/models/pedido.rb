@@ -1,4 +1,5 @@
 class Pedido < ActiveRecord::Base
+  
   has_many :itens
   has_many :produtos, :through => :itens
   
@@ -9,6 +10,12 @@ class Pedido < ActiveRecord::Base
     else
       self.itens.build( :produto => produto, :quantidade => quantidade )
     end
+  end
+  
+  def preco_total
+    total = 0
+    self.itens.each{ |item| total += item.preco_total}
+    total
   end
   
 end

@@ -3,16 +3,13 @@
         <title><%= @titulo %>| Loja </title>
     </head>
     <body>
-        <h1><%= @titulo %>| Loja </h1>
+        <h1><%= @titulo %> | Loja </h1>
         <% flash.each do |key,value| %>
         <div class="<%= key %>_flash">
             <p>
                 <%= value %>
             </p>
         </div>
-        <% end %>
-        <% unless pedido_atual.itens.blank? %>
-        	<p><%= link_to 'Veja o seu carrinho', itens_path %></p>
         <% end %>
         <%= yield %>
     </body>
