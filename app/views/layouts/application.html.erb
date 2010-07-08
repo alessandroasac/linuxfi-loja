@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title><%= @titulo %>| Loja </title>
+    </head>
+    <body>
+        <h1><%= yield :cabecalho %> | Loja </h1>
+        <% flash.each do |key,value| %>
+        <div class="<%= key %>_flash">
+            <p>
+                <%= value %>
+            </p>
+        </div>
+        <% end %>
+        <%= yield %>
+    </body>
+</html>
