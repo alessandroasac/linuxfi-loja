@@ -3,7 +3,7 @@ class Pedido < ActiveRecord::Base
   has_many :itens
   has_many :produtos, :through => :itens
   
-  def adicionar_produto(pruduto, quantidade)
+  def adicionar_produto(produto, quantidade)
     if item = self.itens.detect { |elemento| elemento.produto == produto }
       item.incrementar_quantidade(quantidade)
       item.save
