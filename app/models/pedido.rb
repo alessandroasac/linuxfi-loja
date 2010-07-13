@@ -4,18 +4,15 @@ class Pedido < ActiveRecord::Base
   has_many :produtos, :through => :itens
   
   def adicionar_produto(produto, quantidade)
-    if item = self.itens.detect { |elemento| elemento.produto == produto }
-      item.incrementar_quantidade(quantidade)
-      item.save
+    if item = self.itens.detect { |i| i.produto == produto }
+      item.update_attributes( :quantidade => item.quantidade + quantidade.to_i )
     else
-      self.itens.build( :produto => produto, :quantidade => quantidade )
+      self.itens.build( :produto_id => produto.id, :quantidade => quantidade )
     end
   end
   
   def preco_total
-    total = 0
-    self.itens.each{ |item| total += item.preco_total}
-    total
+    self.itens.inject(0) { |acc, item| acc + item.preco_total }
   end
   
 end

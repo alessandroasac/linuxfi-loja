@@ -1,19 +1,16 @@
 <html>
-    <head>
-        <title><%= @titulo %>| Loja </title>
-    </head>
-    <body>
-        <h1><%= @titulo %>| Loja </h1>
-        <% flash.each do |key,value| %>
-        <div class="<%= key %>_flash">
-            <p>
-                <%= value %>
-            </p>
-        </div>
-        <% end %>
-        <% unless pedido_atual.itens.blank? %>
-        	<p><%= link_to 'Veja o seu carrinho', itens_path %></p>
-        <% end %>
-        <%= yield %>
-    </body>
+  <head>
+    <title><%= @titulo %> | Loja </title>
+  </head>
+  <body>
+    <h1><%= @titulo %> | Loja </h1>
+    <p><%= link_to 'Produtos', produtos_path %></p>
+    <% flash.each do |key,value| %>
+      <%= content_tag :div, value, :class => "#{key}_flash"%>
+    <% end %>
+    <% unless pedido_atual.itens.blank? %>
+      <p><%= link_to 'Veja o seu carrinho', itens_path %></p>
+    <% end %>
+    <%= yield %>
+  </body>
 </html>
