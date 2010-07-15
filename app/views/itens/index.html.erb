@@ -1,48 +1,23 @@
-<table>
-  <thead>
-    <tr>
-      <th>
-        Produto
-      </th>
-      <th>
-        Quantidade
-      </th>
-      <th>
-        Preço Unitário
-      </th>
-      <th>
-        Preço Total
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% pedido_atual.itens.each do |item| %>
+<% form_tag atualizar_pedido_itens_path, :method => :post do %>
+  <table>
+    <thead>
       <tr>
-        <td>
-          <%= item.produto.nome %>
-        </td>
-        <td>
-          <%= item.quantidade %>
-        </td>
-        <td>
-          <%= number_to_currency item.produto.preco %>
-        </td>
-        <td>
-          <%= number_to_currency item.preco_total %>
-        </td>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço Unitário</th>
+        <th>Preço Total</th>
       </tr>
-    <% end %>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="2">
-      </td>
-      <td>
-        Preço Total
-      </td>
-      <td>
-        <%= number_to_currency pedido_atual.preco_total %>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+    </thead>
+    <tbody>
+      <%= render pedido_atual.itens %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2"></td>
+        <td>Preço Total:</td>
+        <td><%= number_to_currency pedido_atual.preco_total %></td>
+      </tr>
+    </tfoot>
+  </table>
+  <%= submit_tag 'Adicionar' %>
+<% end %>

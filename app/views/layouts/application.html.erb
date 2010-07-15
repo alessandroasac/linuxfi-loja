@@ -4,13 +4,18 @@
   </head>
   <body>
     <h1><%= @titulo %> | Loja </h1>
-    <p><%= link_to 'Produtos', produtos_path %></p>
+
     <% flash.each do |key,value| %>
       <%= content_tag :div, value, :class => "#{key}_flash"%>
     <% end %>
-    <% unless pedido_atual.itens.blank? %>
-      <p><%= link_to 'Veja o seu carrinho', itens_path %></p>
-    <% end %>
+
+    <ul>
+      <li><%= link_to 'Produtos', produtos_path %></li>
+      <% unless pedido_atual.blank? %>
+        <li><%= link_to 'Veja o seu carrinho', itens_path %></li>
+      <% end %>
+    </ul>
     <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>
