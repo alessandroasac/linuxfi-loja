@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title><%= titulo %></title>
+  </head>
+  <body>
+    <h1><%= titulo %></h1>
+    <h3><%= yield :cabecalho %></h3>
+    <%= render_flash %>
+    <%= render 'compartilhados/flash' %>
+    <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
+  </body>
+</html>

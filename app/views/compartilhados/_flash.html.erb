@@ -1,0 +1,5 @@
+<% unless flash.blank? %>
+  <% flash.each do |key,value| %>
+    <%= content_tag :div, value, :class => "#{key}_flash"%>
+  <% end %>
+<% end %>

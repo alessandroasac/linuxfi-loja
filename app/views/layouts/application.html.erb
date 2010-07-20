@@ -5,9 +5,7 @@
   <body>
     <h1><%= @titulo %> | Loja </h1>
 
-    <% flash.each do |key,value| %>
-      <%= content_tag :div, value, :class => "#{key}_flash"%>
-    <% end %>
+    <%= render_flash %>
 
     <ul>
       <li><%= link_to 'Produtos', produtos_path %></li>

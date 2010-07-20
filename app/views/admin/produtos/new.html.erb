@@ -1,0 +1,24 @@
+<%= link_to "Voltar", admin_produtos_path %>
+
+<% admin_form_for_produto do |f| %>
+
+  <%= f.error_messages %>
+
+  <p>
+    Nome: <br/>
+    <%= f.text_field :nome %>
+  </p>
+
+  <p>
+    Preço: <br/>
+    <%= f.text_field :preco %>
+  </p>
+
+  <p>
+    Descrição: <br/>
+    <%= f.text_area :descricao %>
+  </p>
+
+  <p> <%= f.submit "Enviar" %> </p>
+
+<% end %>
