@@ -1,9 +1,14 @@
 <% content_for :cabecalho do %>
   Listagem de Produtos
 <% end %>
+
 <p><%= link_to "Novo Produto", new_admin_produto_path %></p>
+
 <% unless @produtos.blank? %>
-  <%= will_paginate %>
+
+  <%= mensagem_de_paginacao @produtos %>
+  <%= will_paginate @produtos %>
+
   <table>
     <%= cabecalho_de_tabela "ID", "Nome", "Preço", "Ações" %>
     <tbody>
@@ -24,7 +29,11 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate %>
+
+  <%= will_paginate @produtos %>
+
 <% else %>
+
   <h3>Não há produtos cadastrados</h3>
+
 <% end %>

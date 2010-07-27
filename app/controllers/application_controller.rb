@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
       @pedido_atual = session[:pedido_id].blank? ?
         Pedido.new : Pedido.find( session[:pedido_id] )
     end
-    @pedido_atual
   end
 
   def load_page
@@ -26,6 +25,7 @@ class ApplicationController < ActionController::Base
     if @per_page.to_i > 30
       @per_page = 30
     end
+    @per_page = 2
   end
 
   def paginate( scope, options = {} )

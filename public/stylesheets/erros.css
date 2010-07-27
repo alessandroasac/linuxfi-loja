@@ -1,0 +1,5 @@
+.fieldWithErrors {
+    background-color: red;
+    padding: 4px;
+    display: table
+}
