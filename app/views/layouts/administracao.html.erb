@@ -2,7 +2,6 @@
   <head>
     <title><%= titulo %></title>
 
-    <%= stylesheet_link_tag "erros" %>
     <%= yield :stylesheets %>
 
   </head>
@@ -10,10 +9,9 @@
 
     <h1><%= titulo %></h1>
 
-    <h3><%= yield :cabecalho %></h3>
+    <h3><%= yield :cabecalho %> | Administração</h3>
 
     <%= render_flash %>
-    <%= render 'compartilhados/flash' %>
 
     <%= yield %>
 

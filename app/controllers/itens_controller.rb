@@ -1,8 +1,5 @@
 class ItensController < ApplicationController
 
-  #commit do master
-  #commit em usuários
-
   def index
     @titulo = 'Carrinho'
   end

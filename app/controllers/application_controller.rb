@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+  filter_parameter_logging :senha, :senha_confirmation
 
-  #este é o master
-  #este ainda é o master
+  include AutenticacaoControllerHelper
 
   helper_method :pedido_atual
   
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def pedido_atual
     unless @pedido_atual
       @pedido_atual = session[:pedido_id].blank? ?
-        Pedido.new : Pedido.find( session[:pedido_id] )
+        Pedido.new : Pedido.find_by_id( session[:pedido_id] )
     end
   end
 
