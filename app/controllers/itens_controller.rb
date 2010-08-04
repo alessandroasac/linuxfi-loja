@@ -13,8 +13,9 @@ class ItensController < ApplicationController
     pedido_atual.save
 
     session[:pedido_id] = pedido_atual.id
+
     ir_para_carrinho("Produto '#{@produto.nome}' adicionado com sucesso ao carrinho")
-    
+
   end
 
   def atualizar_pedido

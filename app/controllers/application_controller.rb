@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
       @pedido_atual = session[:pedido_id].blank? ?
         Pedido.new : Pedido.find_by_id( session[:pedido_id] )
     end
+    @pedido_atual
   end
 
   def load_page
