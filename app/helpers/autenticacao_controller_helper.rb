@@ -44,14 +44,22 @@ module AutenticacaoControllerHelper
   end
 
   def usuario_atual=( usuario )
-    @usuario_atual = usuario
     session[:usuario_id] = usuario.id
-    usuario.create_pedido_atual unless usuario.pedido_atual
-    unless self.pedido_atual.blank?
-      usuario.pedido_atual.unir( self.pedido_atual )
-      self.pedido_atual.destroy
+
+    unless pedido_atual.blank?
+      usuario.pedido_atual.unir( pedido_atual )
     end
+
     session[:pedido_id] = usuario.pedido_atual.id
+    @usuario_atual = usuario
+  end
+
+  def pedido_atual
+    unless @pedido_atual
+      @pedido_atual = session[:pedido_id].blank? ?
+        Pedido.new : Pedido.find_by_id( session[:pedido_id] )
+    end
+    @pedido_atual
   end
 
   def login_pela_sessao

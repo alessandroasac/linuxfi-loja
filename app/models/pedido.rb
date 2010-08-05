@@ -16,14 +16,20 @@ class Pedido < ActiveRecord::Base
     self.itens.to_a.sum( &:preco_total )
   end
 
+  def quantidade_total
+    self.itens.sum( :quantidade )
+  end
+
   def blank?
     self.itens.blank?
   end
 
-  def unir( outro_pedido )
-    outro_pedido.itens.each do |item|
+  def unir( pedido )
+    return if pedido.blank? || self == pedido
+    pedido.itens.each do |item|
       self.adicionar_produto(item.produto, item.quantidade)
     end
+    pedido.destroy
     self.save
   end 
 
