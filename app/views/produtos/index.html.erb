@@ -1,3 +1,13 @@
+<% content_for :cabecalho do %>
+  Listagem de Produtos
+<% end %>
+
+<% form_tag produtos_path, :method => :get do %>
+  Digite sua Busca:
+  <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag "Buscar" %>
+<% end %>
+
 <% unless @produtos.blank? %>
   <table>
     <thead>
@@ -24,11 +34,18 @@
                 :style => "display:none;"
             %>
             <% end %>
+            | <%= link_to "Visualizar", produto_path( produto ) %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <h3>Não há produtos cadastrados</h3>
+  <h3>
+    <% if params[:q].blank? %>
+      Não há produtos cadastrados
+    <% else %>
+      Não foi encontrado nenhum produto para busca por "<%= params[:q] %>"
+    <% end %>
+  </h3>
 <% end %>
