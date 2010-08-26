@@ -8,8 +8,6 @@ set :deploy_to,           "/home/deployer/shop"
 set :runner,              "deployer"
 set :repository,          "git@github.com:alessandroasac/linuxfi-loja.git"
 set :scm,                 :git
-set :real_revision,       lambda { source.query_revision(revision) {
-    |cmd| capture(cmd) } }
 
 ssh_options[:paranoid]    = false
 default_run_options[:pty] = true
@@ -24,7 +22,7 @@ namespace :deploy do
     sudo "/etc/init.d/unicorn start"
   end
 
-  task :start do
+  task :stop do
     sudo "/etc/init.d/unicorn stop"
   end
 
